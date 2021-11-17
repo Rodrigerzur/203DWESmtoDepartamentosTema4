@@ -6,6 +6,6 @@
  * and open the template in the editor.
  */
 
-define("HOST","mysql:host=daw203.sauces.local;dbname=DB203DWESProyectoTema4");
+define("HOST","mysql:host=DAW203.sauces.local;dbname=DB203DWESProyectoTema4");
 define("PASSWORD", "paso");
 define("USER","User203DWESProyectoTema4");

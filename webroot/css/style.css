@@ -67,7 +67,15 @@ input.enviar{
 
 #DescDepartamento{
     width: 300px;
-    height: 30px;
+    height: 20px;
+}
+#VolumenNegocio{
+    width: 300px;
+    height: 20px;
+}
+#CodDepartamento{
+    width: 300px;
+    height: 20px;
 }
 
 .descDepartamento, .CodigoDepartamento, .DescripcionDepartamento, .Fecha, .Volumen{
@@ -122,9 +130,10 @@ input.enviar{
 }
 input.aceptar, input.cancelar{
    
-    width: 270px;
-    height: 55px;
+    width: 250px;
+    height: 30px;
     font-size: 20px;
+    font-weight: bold;
 }
 
 .mainEditar{
@@ -134,7 +143,10 @@ input.aceptar, input.cancelar{
     align-items: center;
     justify-content: space-around; 
 }
-
+.contenido{
+    border:1px solid black;
+    padding:10px;
+}
 .formularioMostrar{
     text-align: center;
     width: 100%;

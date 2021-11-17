@@ -1,6 +1,6 @@
 <?php
 if (isset($_REQUEST['volver'])) {//si se pulsa el botón de volver
-    header('Location:' . URL . '../../../../proyectoTema4/indexProyectoTema4.php'); //Link al indexProyectoTema4
+    header('Location:' . '../../../../proyectoTema4/indexProyectoTema4.php'); //Link al indexProyectoTema4
     exit();
 }
 ?>
@@ -23,7 +23,7 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botón de volver
                     <ul class="enlaces">
                         <li><a href="exportarDepartamentos.php">EXPORTAR </a></li>
                         <li><a href="importarDepartamentos.php">IMPORTAR </a></li>
-                        <li><a href="altaDepartamento.php">AÑADIR </a></li>
+                        <li><a href="crearDepartamento.php">AÑADIR </a></li>
                     </ul>
                 </nav> 
                 <?php
