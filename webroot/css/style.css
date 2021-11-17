@@ -99,13 +99,27 @@ input.enviar{
 }
 .tablaConsultaCampos{
     width: 100%;
+    padding:10px;
 }
-
+.tablaConsultaCampos th{
+    text-align: justify;
+}
 .campo{
+    text-align: justify;
     width: 20%;
-    background-color: blue;
+    
+    background-color: transparent;
 }
-
+.boton{
+    background-color:transparent;
+    text-align: center;
+   
+}
+.boton a{
+     text-decoration: none;
+     color:black;
+     font-weight: bold;
+}
 input.aceptar, input.cancelar{
    
     width: 270px;
@@ -122,21 +136,20 @@ input.aceptar, input.cancelar{
 }
 
 .formularioMostrar{
+    text-align: center;
     width: 100%;
     margin-left: 21%;
     margin-right: 21%;
 }
-
+.formularioConsulta{
+    margin-left: 5%;
+    display:block;
+    position:absolute;
+}
 .botones{
     width: 20%;
-    float: left;
-    margin-left: 5%;
     margin-top: 2%;
-    
-}
-.botones td{
-    
-    padding-right:50px;
+    margin-left: 5%;
 }
 
 .resultadoConsulta{
@@ -156,3 +169,4 @@ input.aceptar, input.cancelar{
 .tBoton{
     width: 30px; 
 }
+

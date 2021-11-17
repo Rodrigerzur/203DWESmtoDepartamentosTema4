@@ -1,12 +1,6 @@
 <?php
-//require_once "../config/confLocation.php";//Incluimos el archivo de configuración para poder acceder a la constante de la url del header Location   
-if (isset($_REQUEST['volver'])) {//si pulsa el botón de volver
-    header('Location:' . URL . '/proyectoDWES/indexProyectoDWES.php'); //Redirigimos al usuario a la página inicial de DWES
-    exit();
-}
-
-if (isset($_REQUEST['mostrarCodigo'])) {//Si pulsa el botón de mostrar codigo
-    header('Location:' . URL . '/proyectoMtoDepartamentosTema4/codigoPHP/mostrarCodigo.php'); //Redirigimos al usuario a la página mostrarCodigo.php
+if (isset($_REQUEST['volver'])) {//si se pulsa el botón de volver
+    header('Location:' . URL . '../../../../proyectoTema4/indexProyectoTema4.php'); //Link al indexProyectoTema4
     exit();
 }
 ?>
@@ -15,7 +9,7 @@ if (isset($_REQUEST['mostrarCodigo'])) {//Si pulsa el botón de mostrar codigo
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mto Departamentos</title>
+        <title>Mto Departamentos Tema 4</title>
         <link href="../webroot/css/style.css" rel="stylesheet"> 
     </head>
     <body>
@@ -33,14 +27,15 @@ if (isset($_REQUEST['mostrarCodigo'])) {//Si pulsa el botón de mostrar codigo
                     </ul>
                 </nav> 
                 <?php
-                require_once "../core/210322ValidacionFormularios.php"; //Incluimos la librería de validación para comprobar los campos del formulario
-                require_once "../config/confDBPDO.php"; //Incluimos el archivo confDBPDO.php para poder acceder al valor de las constantes de los distintos valores de la conexión 
+                //Incluir la libreria de funciones para la validacion
+                require_once '../core/210322ValidacionFormularios.php';
+                require_once '../config/confDBPDO.php'; //Archivo con configuracion de PDO
 
                 define("OBLIGATORIO", 1);
                 define("OPCIONAL", 0);
                 $entradaOK = true;
 
-                $error = null; //Inicializamos a null la variable donde almacenaremos los errores del campo
+                $error = null;
                 ?>
                 <div class="formBuscar">
                     <form name="formulario" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="formBuscar">
@@ -52,9 +47,8 @@ if (isset($_REQUEST['mostrarCodigo'])) {//Si pulsa el botón de mostrar codigo
                 </div>
                 <div class="resultadoConsulta">
                     <?php
-                    if (isset($_REQUEST['buscar'])) {// Comprobamos si el usuario ha enviado el formulario
-                        $error = validacionFormularios::comprobarAlfaNumerico($_REQUEST['DescDepartamento'], 255, 1, OPCIONAL); //Comprobamos que la descripción sea alfanumerico
-
+                    if (isset($_REQUEST['buscar'])) {// Comprobamos si se ha enviado el formulario
+                        $error = validacionFormularios::comprobarAlfaNumerico($_REQUEST['DescDepartamento'], 255, 1, OPCIONAL);
                         if ($error != null) {//Si hay errores
                             $entradaOK = false;
                             $_REQUEST['DescDepartamento'] = "";
@@ -64,14 +58,16 @@ if (isset($_REQUEST['mostrarCodigo'])) {//Si pulsa el botón de mostrar codigo
                     }
                     if ($entradaOK) {//Si el usuario ha rellenado correctamente el formulario
                         try {
-                            $miDB = new PDO(HOST, USER, PASSWORD); //Instanciamos un objeto PDO y establecemos la conexión
-                            $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Configuramos las excepciones
+                            /* Establecemos la connection con pdo */
+                            $miDB = new PDO(HOST, USER, PASSWORD);
+                            /* configurar las excepcion */
+                            $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                            $sql = 'SELECT * FROM Departamento WHERE DescDepartamento LIKE "%":DescDepartamento"%" LIMIT ' . (($numPagina - 1) * MAXDEPARTAMENTOS) . ',' . MAXDEPARTAMENTOS;
+                            $sql = 'SELECT * FROM Departamento WHERE DescDepartamento LIKE "%":DescDepartamento"%" ';
 
                             $consulta = $miDB->prepare($sql); //Preparamos la consulta
                             $parametros = [":DescDepartamento" => $_REQUEST['DescDepartamento']];
-                            $consulta->execute($parametros); //Pasamos los parametros y ejecutamos la consulta
+                            $consulta->execute($parametros); //ejecutamos la consulta
                             ?>
                             <div class="tabla">
                                 <table class="tablaConsultaCampos">
@@ -95,11 +91,11 @@ if (isset($_REQUEST['mostrarCodigo'])) {//Si pulsa el botón de mostrar codigo
                                                     <td class="campo" style="<?php echo($registro->FechaBaja ? 'color: red' : 'color: green'); ?>" class="fecha"><?php echo($registro->FechaBaja ? $registro->FechaBaja : 'null'); ?></td>
                                                     <td class="campo" style="<?php echo($registro->FechaBaja ? 'color: red' : 'color: green'); ?>"><?php echo $registro->VolumenNegocio ?></td>
 
-                                                    <td class="boton"><button name='editar' value="Editar" style="background-color: transparent; border: 0;" ><a href="<?php echo 'editarDepartamento.php?codigo=' . $registro->CodDepartamento ?>"><img src="../webroot/media/editar.png" alt="EDITAR" width="30"></a></button></td>       
-                                                    <td class="boton"><button name='consultar' value="Consultar" style="background-color: transparent; border: 0;"><a href="<?php echo 'mostrarDepartamento.php?codigo=' . $registro->CodDepartamento ?>"><img src="../webroot/media/ver.png" alt="CONSULTAR" width="30"></a></button></td>
-                                                    <td class="boton"><button name='borrar' value="Borrar" style="background-color: transparent; border: 0;"><a href="<?php echo 'bajaDepartamento.php?codigo=' . $registro->CodDepartamento ?>"><img src="../webroot/media/borrar.png" alt="BORRAR" width="30"></a></button></td>
-                                                    <td class="boton"><button name='bajaLogica' value="BajaLogica" style="background-color: transparent; border: 0;"><a href="<?php echo 'bajaLogicaDepartamento.php?codigo=' . $registro->CodDepartamento ?>"><img src="../webroot/media/baja.png" alt="BajaLogica" width="30"></a></button></td>
-                                                    <td class="boton"><button name='rehabilitar' value="Rehabilitar" style="background-color: transparent; border: 0;"><a href="<?php echo 'rehabilitarDepartamento.php?codigo=' . $registro->CodDepartamento ?>"><img src="../webroot/media/rehabilitar.png" alt="Rehabilitar" width="30"></a></button></td>
+                                                    <td class="boton"><button name='editar' value="Editar" style="background-color: transparent; border: 0;" ><a href="<?php echo 'editarDepartamento.php?codigo=' . $registro->CodDepartamento ?>">EDITAR</a></button></td>       
+                                                    <td class="boton"><button name='consultar' value="Consultar" style="background-color: transparent; border: 0;"><a href="<?php echo 'mostrarDepartamento.php?codigo=' . $registro->CodDepartamento ?>">CONSULTAR</a></button></td>
+                                                    <td class="boton"><button name='borrar' value="Borrar" style="background-color: transparent; border: 0;"><a href="<?php echo 'bajaDepartamento.php?codigo=' . $registro->CodDepartamento ?>">BORRAR</a></button></td>
+                                                    <td class="boton"><button name='bajaLogica' value="BajaLogica" style="background-color: transparent; border: 0;"><a href="<?php echo 'bajaLogicaDepartamento.php?codigo=' . $registro->CodDepartamento ?>">BAJA</a></button></td>
+                                                    <td class="boton"><button name='rehabilitar' value="Rehabilitar" style="background-color: transparent; border: 0;"><a href="<?php echo 'rehabilitarDepartamento.php?codigo=' . $registro->CodDepartamento ?>">REHABILITAR</a></button></td>
                                                 </tr> 
                                                 <?php
                                                 $registro = $consulta->fetchObject(); //Obtenemos la siguiente fila del resultado de la consulta y avanzamos el puntero a la siguiente fila
@@ -121,36 +117,31 @@ if (isset($_REQUEST['mostrarCodigo'])) {//Si pulsa el botón de mostrar codigo
                                 }
                                 ?>
 
+                            </div>
+                            <?php
+                        } catch (PDOException $excepcion) { //si se produce alguna excepción
+                            $errorExcepcion = $excepcion->getCode(); //Guardar el código del error 
+                            $mensajeExcepcion = $excepcion->getMessage(); //Guardar el mensaje de la excepcion
 
-                                <?php
-                            } catch (PDOException $excepcion) { //si se produce alguna excepción
-                                $errorExcepcion = $excepcion->getCode(); //Guardar el código del error 
-                                $mensajeExcepcion = $excepcion->getMessage(); //Guardar el mensaje de la excepcion
-
-                                echo "<span>Error: </span>" . $mensajeExcepcion . "<br>"; //mensaje de la excepción
-                                echo "<span>Código del error: </span>" . $errorExcepcion; //código de la excepción
-                            } finally {
-                                unset($miDB); //Cerrar la conexion 
-                            }
+                            echo "<span>Error: </span>" . $mensajeExcepcion . "<br>"; //mensaje de la excepción
+                            echo "<span>Código del error: </span>" . $errorExcepcion; //código de la excepción
+                        } finally {
+                            unset($miDB); //Cerrar la conexion 
                         }
-                        ?>
-                    </div>
+                    }
+                    ?>
+                </div>
                     <form  name="formularioconsulta" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                         <table class="botones">
                             <tr>
                                 <td>
-                                    <button type="submit" name='volver' value="Volver" class="volver">VOLVER</button>
-                                </td>
-                                <td>
-                                    <button name='mostrarCodigo' value="mostrarCodigo" class="volver">Mostrar Código</button>
+                                    <button type="submit" name='volver' value="Volver" class="volver">SALIR</button>
                                 </td>
                             </tr>
                         </table> 
                     </form>
-                </div>
+                
             </div>
         </main>
-
-
     </body>
 </html>
