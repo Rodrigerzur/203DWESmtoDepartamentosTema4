@@ -14,7 +14,7 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botÃ³n de volver
     </head>
     <body>
         <header>
-            <div class="logo">Mantenimiento de Departamentos</div>
+            <div class="titulo">Mantenimiento de Departamentos</div>
         </header>
 
         <main class="mainIndex">
@@ -23,7 +23,7 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botÃ³n de volver
                     <ul class="enlaces">
                         <li><a href="exportarDepartamentos.php">EXPORTAR </a></li>
                         <li><a href="importarDepartamentos.php">IMPORTAR </a></li>
-                        <li><a href="crearDepartamento.php">AÃ‘ADIR </a></li>
+                        <li><a href="crearDepartamento.php">AÑADIR </a></li>
                     </ul>
                 </nav> 
                 <?php
@@ -39,8 +39,8 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botÃ³n de volver
                 ?>
                 <div class="formBuscar">
                     <form name="formulario" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="formBuscar">
-                        <label for="DescDepartamento" class="descDepartamento">DescripciÃ³n de departamento: </label>
-                        <input type="text" style="background-color: #D2D2D2" id="DescDepartamento" style="background-color: #D2D2D2" name="DescDepartamento" value="<?php echo(isset($_REQUEST['DescDepartamento']) ? $_REQUEST['DescDepartamento'] : null); ?>" class="descDepartamento">
+                        <label for="DescDepartamento" class="descDepartamento">Descripción de departamento: </label>
+                        <input type="text" style="background-color: white" id="DescDepartamento" name="DescDepartamento" value="<?php echo(isset($_REQUEST['DescDepartamento']) ? $_REQUEST['DescDepartamento'] : null); ?>" class="descDepartamento">
                         <?php echo($error != null ? "<span style='color:red'>" . $error . "</span>" : null); ?>
                         <input type="submit" value="Buscar" name="buscar" class="enviar">
                     </form>
@@ -73,8 +73,8 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botÃ³n de volver
                                 <table class="tablaConsultaCampos">
                                     <thead>
                                         <tr>
-                                            <th class="cDepartamento">CÃ³digo</th>
-                                            <th class="dDepartamento">DescripciÃ³n</th>
+                                            <th class="cDepartamento">Código</th>
+                                            <th class="dDepartamento">Descripción</th>
                                             <th class="fDepartamento">FechaBaja</th>
                                             <th class="vDepartamento">VolumenNegocio</th>
                                         </tr>
@@ -119,28 +119,28 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botÃ³n de volver
 
                             </div>
                             <?php
-                        } catch (PDOException $excepcion) { //si se produce alguna excepciÃ³n
-                            $errorExcepcion = $excepcion->getCode(); //Guardar el cÃ³digo del error 
-                            $mensajeExcepcion = $excepcion->getMessage(); //Guardar el mensaje de la excepcion
+                        } catch (PDOException $excepcion) {
+                            $errorExcepcion = $excepcion->getCode();
+                            $mensajeExcepcion = $excepcion->getMessage();
 
-                            echo "<span>Error: </span>" . $mensajeExcepcion . "<br>"; //mensaje de la excepciÃ³n
-                            echo "<span>CÃ³digo del error: </span>" . $errorExcepcion; //cÃ³digo de la excepciÃ³n
+                            echo "<span style='color: red;'>Error: </span>" . $mensajeExcepcion . "<br>"; //Mostramos el mensaje de la excepción
+                            echo "<span style='color: red;'>Código del error: </span>" . $errorExcepcion; //Mostramos el código de la excepción
                         } finally {
-                            unset($miDB); //Cerrar la conexion 
+                            unset($miDB); //Cerramos la conexión 
                         }
                     }
                     ?>
                 </div>
-                    <form  name="formularioconsulta" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                        <table class="botones">
-                            <tr>
-                                <td>
-                                    <button type="submit" name='volver' value="Volver" class="volver">SALIR</button>
-                                </td>
-                            </tr>
-                        </table> 
-                    </form>
-                
+                <form  name="formularioconsulta" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <table class="botones">
+                        <tr>
+                            <td>
+                                <button type="submit" name='volver' value="Volver" class="volver">SALIR</button>
+                            </td>
+                        </tr>
+                    </table> 
+                </form>
+
             </div>
         </main>
     </body>

@@ -107,7 +107,7 @@ EOD;
 </head>
 <body>
     <header>
-        <div class="logo">Mantenimiento de Departamentos - Añadir Departamento</div>
+        <div class="titulo">Mantenimiento de Departamentos - Añadir Departamento</div>
     </header>
     <main class="mainEditar">
         <div class="contenido">
