@@ -1,5 +1,5 @@
 <?php
-if (isset($_REQUEST['volver'])) {//si se pulsa el botón de volver
+if (isset($_REQUEST['volver'])) {//si se pulsa el botÃ³n de volver
     header('Location:' . '../../../../proyectoTema4/indexProyectoTema4.php'); //Link al indexProyectoTema4
     exit();
 }
@@ -23,7 +23,7 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botón de volver
                     <ul class="enlaces">
                         <li><a href="exportarDepartamentos.php">EXPORTAR </a></li>
                         <li><a href="importarDepartamentos.php">IMPORTAR </a></li>
-                        <li><a href="crearDepartamento.php">AÑADIR </a></li>
+                        <li><a href="crearDepartamento.php">AÃ‘ADIR </a></li>
                     </ul>
                 </nav> 
                 <?php
@@ -39,7 +39,7 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botón de volver
                 ?>
                 <div class="formBuscar">
                     <form name="formulario" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="formBuscar">
-                        <label for="DescDepartamento" class="descDepartamento">Descripción de departamento: </label>
+                        <label for="DescDepartamento" class="descDepartamento">DescripciÃ³n de departamento: </label>
                         <input type="text" style="background-color: #D2D2D2" id="DescDepartamento" style="background-color: #D2D2D2" name="DescDepartamento" value="<?php echo(isset($_REQUEST['DescDepartamento']) ? $_REQUEST['DescDepartamento'] : null); ?>" class="descDepartamento">
                         <?php echo($error != null ? "<span style='color:red'>" . $error . "</span>" : null); ?>
                         <input type="submit" value="Buscar" name="buscar" class="enviar">
@@ -73,15 +73,15 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botón de volver
                                 <table class="tablaConsultaCampos">
                                     <thead>
                                         <tr>
-                                            <th class="cDepartamento">Código</th>
-                                            <th class="dDepartamento">Descripción</th>
+                                            <th class="cDepartamento">CÃ³digo</th>
+                                            <th class="dDepartamento">DescripciÃ³n</th>
                                             <th class="fDepartamento">FechaBaja</th>
                                             <th class="vDepartamento">VolumenNegocio</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if ($consulta->rowCount() > 0) {//Si hay algún resultado
+                                        if ($consulta->rowCount() > 0) {//Si hay algÃºn resultado
                                             $registro = $consulta->fetchObject(); //Obtenemos la primera fila del resultado de la consulta y avanzamos el puntero a la siguiente fila
                                             while ($registro) { //Mientras haya un registro  
                                                 ?>
@@ -91,7 +91,7 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botón de volver
                                                     <td class="campo" style="<?php echo($registro->FechaBaja ? 'color: red' : 'color: green'); ?>" class="fecha"><?php echo($registro->FechaBaja ? $registro->FechaBaja : 'null'); ?></td>
                                                     <td class="campo" style="<?php echo($registro->FechaBaja ? 'color: red' : 'color: green'); ?>"><?php echo $registro->VolumenNegocio ?></td>
 
-                                                    <td class="boton"><button name='editar' value="Editar" style="background-color: transparent; border: 0;" ><a href="<?php echo 'editarDepartamento.php?codigo=' . $registro->CodDepartamento ?>">EDITAR</a></button></td>       
+                                                    <td class="boton"><button name='editar' value="Editar" style="background-color: transparent; border: 0;" ><a href="<?php echo 'editarDepartamento.php?CodDepartamentoEnCurso=' . $registro->CodDepartamento ?>">EDITAR</a></button></td>       
                                                     <td class="boton"><button name='consultar' value="Consultar" style="background-color: transparent; border: 0;"><a href="<?php echo 'mostrarDepartamento.php?codigo=' . $registro->CodDepartamento ?>">CONSULTAR</a></button></td>
                                                     <td class="boton"><button name='borrar' value="Borrar" style="background-color: transparent; border: 0;"><a href="<?php echo 'bajaDepartamento.php?codigo=' . $registro->CodDepartamento ?>">BORRAR</a></button></td>
                                                     <td class="boton"><button name='bajaLogica' value="BajaLogica" style="background-color: transparent; border: 0;"><a href="<?php echo 'bajaLogicaDepartamento.php?codigo=' . $registro->CodDepartamento ?>">BAJA</a></button></td>
@@ -119,12 +119,12 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botón de volver
 
                             </div>
                             <?php
-                        } catch (PDOException $excepcion) { //si se produce alguna excepción
-                            $errorExcepcion = $excepcion->getCode(); //Guardar el código del error 
+                        } catch (PDOException $excepcion) { //si se produce alguna excepciÃ³n
+                            $errorExcepcion = $excepcion->getCode(); //Guardar el cÃ³digo del error 
                             $mensajeExcepcion = $excepcion->getMessage(); //Guardar el mensaje de la excepcion
 
-                            echo "<span>Error: </span>" . $mensajeExcepcion . "<br>"; //mensaje de la excepción
-                            echo "<span>Código del error: </span>" . $errorExcepcion; //código de la excepción
+                            echo "<span>Error: </span>" . $mensajeExcepcion . "<br>"; //mensaje de la excepciÃ³n
+                            echo "<span>CÃ³digo del error: </span>" . $errorExcepcion; //cÃ³digo de la excepciÃ³n
                         } finally {
                             unset($miDB); //Cerrar la conexion 
                         }

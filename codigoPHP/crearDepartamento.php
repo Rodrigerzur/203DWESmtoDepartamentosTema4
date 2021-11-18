@@ -1,8 +1,9 @@
 <?php
     
 if(isset($_REQUEST['cancelar'])){//Si pulsa el botón de cancelar
-    header('Location: '.'departamento.php');//Redirigimos al usuario a la página inicial
+    header('Location: '.'mtoDepartamentos.php');//Redirigimos al usuario a la página inicial
 }
+
    
     //Incluir la libreria de funciones para la validacion
                 require_once '../core/210322ValidacionFormularios.php';
@@ -43,8 +44,8 @@ if(isset($_REQUEST['cancelar'])){//Si pulsa el botón de cancelar
                 $aErrores['CodDepartamento'] = "Ese código de departamento ya existe";
             }
         }catch(PDOException $excepcion){
-            $errorExcepcion = $excepcion->getCode();//Almacenamos el código del error de la excepción en la variable $errorExcepcion
-            $mensajeExcepcion = $excepcion->getMessage();//Almacenamos el mensaje de la excepción en la variable $mensajeExcepcion
+            $errorExcepcion = $excepcion->getCode();//Guardar  el código de error 
+            $mensajeExcepcion = $excepcion->getMessage();//Guardar el mensaje de excepcion
 
             echo "<span style='color: red;'>Error: </span>".$mensajeExcepcion."<br>";//Mostramos el mensaje de la excepción
             echo "<span style='color: red;'>Código del error: </span>".$errorExcepcion;//Mostramos el código de la excepción
@@ -60,7 +61,7 @@ if(isset($_REQUEST['cancelar'])){//Si pulsa el botón de cancelar
             }
         }
     }else{
-        $entradaOK = false; // Si el usuario no ha enviado el formulario asignamos a entradaOK el valor false para que rellene el formulario
+        $entradaOK = false; //Si no se ha enviado el formulario
     }
     if($entradaOK){ //Formulario rellendado correctamente
         $aFormulario['CodDepartamento'] = strtoupper($_REQUEST['CodDepartamento']);
@@ -83,7 +84,7 @@ EOD;
                             ":VolumenNegocio" => $aFormulario['VolumenNegocio'] ];
 
             $consulta->execute($parametros);//Rellenar la consulta
-            header('Location: '.'mtoDepartamentos.php');//Una vez realizada lleva al usuario a la pagina departamento
+            header('Location: '.'mtoDepartamentos.php');//Una vez realizada lleva al usuario a la pagina anterior
 
         }catch (PDOException $excepcion){
             $errorExcepcion = $excepcion->getCode();
@@ -127,10 +128,10 @@ EOD;
                     <?php echo($aErrores['VolumenNegocio']!=null ? "<span style='color:red'>".$aErrores['VolumenNegocio']."</span>" : null); ?>
                     <br><br>
                 </div>
-                <span class="atencion">Se convertira el codigo de departamento a letras MAYUSCULAS</span>
+                <span class="atencion">Se convertira el codigo de departamento a letras MAYÚSCULAS</span>
                 <div>
-                    <input type="submit" style="background-color: #a3f27b;" value="Aceptar" name="aceptar" class="aceptar">
-                    <input type="submit" style="background-color: #f27b7b;" value="Cancelar" name="cancelar" class="cancelar">
+                     <input type="submit" style="background-color: rgba(17, 188, 20, 0.8)" value="Aceptar" name="aceptar" class="aceptar">
+                    <input type="submit" style="background-color: rgba(207, 16, 16, 0.8)" value="Cancelar" name="cancelar" class="cancelar">
                 </div>
             </form>
         </div>

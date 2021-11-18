@@ -69,6 +69,10 @@ input.enviar{
     width: 300px;
     height: 20px;
 }
+#FechaBaja{
+    width: 300px;
+    height: 20px;
+}
 #VolumenNegocio{
     width: 300px;
     height: 20px;
@@ -129,7 +133,6 @@ input.enviar{
      font-weight: bold;
 }
 input.aceptar, input.cancelar{
-   
     width: 250px;
     height: 30px;
     font-size: 20px;
