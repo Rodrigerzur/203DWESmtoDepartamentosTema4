@@ -93,9 +93,7 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botÃ³n de volver
 
                                                     <td class="boton"><button name='editar' value="Editar" style="background-color: transparent; border: 0;" ><a href="<?php echo 'editarDepartamento.php?CodDepartamentoEnCurso=' . $registro->CodDepartamento ?>">EDITAR</a></button></td>       
                                                     <td class="boton"><button name='consultar' value="Consultar" style="background-color: transparent; border: 0;"><a href="<?php echo 'mostrarDepartamento.php?codigo=' . $registro->CodDepartamento ?>">CONSULTAR</a></button></td>
-                                                    <td class="boton"><button name='borrar' value="Borrar" style="background-color: transparent; border: 0;"><a href="<?php echo 'bajaDepartamento.php?codigo=' . $registro->CodDepartamento ?>">BORRAR</a></button></td>
-                                                    <td class="boton"><button name='bajaLogica' value="BajaLogica" style="background-color: transparent; border: 0;"><a href="<?php echo 'bajaLogicaDepartamento.php?codigo=' . $registro->CodDepartamento ?>">BAJA</a></button></td>
-                                                    <td class="boton"><button name='rehabilitar' value="Rehabilitar" style="background-color: transparent; border: 0;"><a href="<?php echo 'rehabilitarDepartamento.php?codigo=' . $registro->CodDepartamento ?>">REHABILITAR</a></button></td>
+                                                    <td class="boton"><button name='borrar' value="Borrar" style="background-color: transparent; border: 0;"><a href="<?php echo 'bajaDepartamento.php?codigo=' . $registro->CodDepartamento ?>">BORRAR</a></button></td>                                      
                                                 </tr> 
                                                 <?php
                                                 $registro = $consulta->fetchObject(); //Obtenemos la siguiente fila del resultado de la consulta y avanzamos el puntero a la siguiente fila
