@@ -12,7 +12,7 @@ create database DB203DWESProyectoTema4;
 use DB203DWESProyectoTema4;
 
 create user 'User203DWESProyectoTema4'@'%' IDENTIFIED BY 'P@ssw0rd';
-grant all privileges on DB203DWESProyectoTema4.* to 'User203DWESProyectoTema4'@'%' with grant option;
+grant all privileges on DB203DWESProyectoTema4.* to 'User203DWESProyectoTema4'@'%';
 
 CREATE TABLE IF NOT EXISTS Departamento(
     CodDepartamento varchar(3) PRIMARY KEY,
