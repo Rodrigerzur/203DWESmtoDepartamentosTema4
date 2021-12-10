@@ -141,5 +141,8 @@ if (isset($_REQUEST['volver'])) {//si se pulsa el botÃ³n de volver
 
             </div>
         </main>
+        <footer>
+            <div><a href="https://daw203.ieslossauces.es/index.php">Rodrigo Geras Zurrón</a></div><div><a href="https://github.com/Rodrigerzur/203DWESLogInLogOutTema5">Github</a></div>
+        </footer>
     </body>
 </html>

@@ -70,7 +70,7 @@ if ($entradaOK) { //Si el formulario se ha enviado correctamente
         $miDB = new PDO(HOST, USER, PASSWORD);
         /* configurar las excepcion */
         $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
+
         $sql = <<<EOD
                UPDATE Departamento SET 
                DescDepartamento=:DescDepartamento,
@@ -118,7 +118,7 @@ EOD;
 
                             <label style="font-weight: bold;" class="DescripcionDepartamento" for="DescDepartamento">Descripción de departamento: </label>
                             <input type="text" id="DescDepartamento" style="background-color: white" name="DescDepartamento" value="<?php echo(isset($_REQUEST['aceptar']) ? ($aErrores['DescDepartamento'] != null ? $descripcionDepartamento : $_REQUEST['DescDepartamento']) : $descripcionDepartamento); ?>">
-    <?php echo($aErrores['DescDepartamento'] != null ? "<span style='color:red'>" . $aErrores['DescDepartamento'] . "</span>" : null); ?>
+                            <?php echo($aErrores['DescDepartamento'] != null ? "<span style='color:red'>" . $aErrores['DescDepartamento'] . "</span>" : null); ?>
                             <br><br>
 
                             <label style="font-weight: bold;" class="Fecha" for="Fecha">Fecha: </label>
@@ -127,7 +127,7 @@ EOD;
 
                             <label style="font-weight: bold;" class="Volumen" for="VolumenNegocio">Volumen de negocio: </label>
                             <input type="text" id="VolumenNegocio" style="background-color: white" name="VolumenNegocio" value="<?php echo(isset($_REQUEST['aceptar']) ? ($aErrores['VolumenNegocio'] != null ? $volumenNegocio : $_REQUEST['VolumenNegocio']) : $volumenNegocio); ?>">
-    <?php echo($aErrores['VolumenNegocio'] != null ? "<span style='color:red'>" . $aErrores['VolumenNegocio'] . "</span>" : null); ?>
+                            <?php echo($aErrores['VolumenNegocio'] != null ? "<span style='color:red'>" . $aErrores['VolumenNegocio'] . "</span>" : null); ?>
                             <br><br>
                         </div>
                         <div>
@@ -138,6 +138,9 @@ EOD;
 
                 </div>
             </main>
+            <footer>
+                <div><a href="https://daw203.ieslossauces.es/index.php">Rodrigo Geras Zurrón</a></div><div><a href="https://github.com/Rodrigerzur/203DWESLogInLogOutTema5">Github</a></div>
+            </footer>
         </body>
     </html>
     <?php
