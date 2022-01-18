@@ -2,7 +2,7 @@
 
 # Descripción
 Proyecto para el mantenimiento de departamentos del tema 4. 
-### Fecha creación: 15/11/2021
+### Fecha creación: 16/11/2021
 ### Fecha última actualización: 10/12/2021
 ### Autor: Rodrigo Geras
 
